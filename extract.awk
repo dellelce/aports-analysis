@@ -16,7 +16,11 @@ $1 ~ /^pkgname/ \
 {
   gsub(/=/, " ")
   print name " " $0
-  name = $2
+
+  if ($2 !~ /\$/)
+  {
+    name = $2
+  }
   next
 }
 
@@ -32,7 +36,7 @@ state == 0 && $1 ~ /^source/ \
   print name " " $0
 
   cnt = split($0, url_a, "\"");
-  if (cnt == 2)
+  if (cnt == 2) # cnt = 2: single double-quote in the line!
   {
     state = 2
   }
