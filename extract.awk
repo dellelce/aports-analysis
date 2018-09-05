@@ -1,12 +1,53 @@
 
 BEGIN { state = 0; }
 
+# variables to ignore, for now
 /builddir/ { next }
+/_buildtags/ { next }
 
-# add some spaces as appropriate
-{ gsub(/\(\)/, " ()"); }
+{
+  # add some spaces as appropriate
+  gsub(/\(\)/, " ()");
+  # cleanup
+  gsub(/ $/, "");
+}
 
-state == 0 && ($1 ~ /^build/ || $1 ~ /^_build/) && ($1 ~ /()/ || $1 ~ /()/) \
+$1 ~ /^pkgname/ \
+{
+  gsub(/=/, " ")
+  print name " " $0
+  name = $2
+  next
+}
+
+$1 ~ /^pkgver/ \
+{
+  gsub(/=/, " ")
+  print name " " $0
+  next
+}
+
+state == 0 && $1 ~ /^source/ \
+{
+  print name " " $0
+
+  cnt = split($0, url_a, "\"");
+  if (cnt == 2)
+  {
+    state = 2
+  }
+  next
+}
+
+# reading list of "sources" over multiple lines
+# 1. line has no termination
+state == 2 && !/\"/ \
+{ print name " " $0; next; }
+# 2. line has termination!
+state == 2 && /\"/ \
+{ print name " " $0; state = 0; next; }
+
+state == 0 && ($1 ~ /^build/ || $1 ~ /^_build/) \
 {
   state = 1
   pos = 0
