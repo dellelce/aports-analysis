@@ -12,27 +12,26 @@ BEGIN { state = 0; }
   gsub(/ $/, "");
 }
 
-$1 ~ /^pkgname/ \
+$1 ~ /^pkgname/ || $1 ~ /^_pkgname/ \
 {
   gsub(/=/, " ")
-  print name " " $0
 
-  if ($2 !~ /\$/)
-  {
-    name = $2
-  }
+  if ($2 !~ /\$/) { name = $2; }
   next
 }
 
 $1 ~ /^pkgver/ \
 {
   gsub(/=/, " ")
+  vers=$2
   print name " " $0
   next
 }
 
 state == 0 && $1 ~ /^source/ \
 {
+  gsub(/\$pkgname/, name);
+  gsub(/\$pkgver/, vers);
   print name " " $0
 
   cnt = split($0, url_a, "\"");
