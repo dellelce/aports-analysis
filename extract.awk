@@ -32,6 +32,7 @@ state == 0 && $1 ~ /^source/ \
 {
   gsub(/\$pkgname/, name);
   gsub(/\$pkgver/, vers);
+  gsub(/\$_ver/, vers);
   print name " " $0
 
   cnt = split($0, url_a, "\"");
@@ -50,7 +51,7 @@ state == 2 && !/\"/ \
 state == 2 && /\"/ \
 { print name " " $0; state = 0; next; }
 
-state == 0 && ($1 ~ /^build/ || $1 ~ /^_build/) \
+state == 0 && ($1 ~ /^build/ || $1 ~ /^_build/ || $1 ~ /^package/) \
 {
   state = 1
   pos = 0
