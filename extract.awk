@@ -30,6 +30,7 @@ $1 ~ /^pkgver/ \
 
 state == 0 && $1 ~ /^source/ \
 {
+  gsub(/\$_pkgname/, name);
   gsub(/\$pkgname/, name);
   gsub(/\$pkgver/, vers);
   gsub(/\$_ver/, vers);
@@ -53,6 +54,10 @@ state == 2 && /\"/ \
 
 state == 0 && ($1 ~ /^build/ || $1 ~ /^_build/ || $1 ~ /^package/) \
 {
+  gsub(/\$_pkgname/, name);
+  gsub(/\$pkgname/, name);
+  gsub(/\$pkgver/, vers);
+  gsub(/\$_ver/, vers);
   state = 1
   pos = 0
   print name " " pos " " $0
