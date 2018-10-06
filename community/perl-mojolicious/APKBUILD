@@ -3,7 +3,7 @@
 # Maintainer: Francesco Colista <fcolista@alpinelinux.org>
 pkgname=perl-mojolicious
 _pkgreal=Mojolicious
-pkgver=8.0
+pkgver=8.02
 pkgrel=0
 pkgdesc="Real-time web framework"
 url="http://search.cpan.org/dist/Mojolicious/"
@@ -42,4 +42,4 @@ package() {
 	find "$pkgdir" \( -name perllocal.pod -o -name .packlist \) -delete
 }
 
-sha512sums="19126a663c52a45f1f32354567b97922453b542073308d2b7288f9deb568f598a2e7ed5b6db377bcb152437c942ed47f8fd805fae80d3f54db02d3a7160cc94e  Mojolicious-8.0.tar.gz"
+sha512sums="fd620fb0fab6b0fb0e64a938b7436ea220a1b7dd7c53681707953629aa12f6f091771afc5ee7edc81af853f4c662d8440ea5ef2c2efec890d62a0f61515d92f4  Mojolicious-8.02.tar.gz"
