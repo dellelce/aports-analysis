@@ -1,15 +1,15 @@
 # Maintainer: Leonardo Arena <rnalrd@alpinelinux.org>
 # Contributor: Jakub Jirutka <jakub@jirutka.cz>
 pkgname=nextcloud
-pkgver=14.0.1
+pkgver=14.0.2
 pkgrel=0
 pkgdesc="A safe home for all your data"
 url="http://nextcloud.com"
 arch="noarch"
 license="AGPL-3.0-only"
 _php=php7
-_php_mods="-ctype -curl -dom -gd -fileinfo -iconv -json -mbstring -openssl
-	-pcntl -posix -session -simplexml -xml -xmlreader -xmlwriter -zlib -zip"
+_php_mods="-ctype -curl -dom -gd -fileinfo -iconv -intl -json -mbstring -openssl
+	-pcntl -posix -session -simplexml -xml -xmlreader -xmlwriter -zip"
 depends="ca-certificates $_php ${_php_mods//-/$_php-}"
 makedepends="xmlstarlet"
 provides="$pkgname-dav=$pkgver-r$pkgrel
@@ -223,15 +223,15 @@ _package_app() {
 	mv "$pkgdir"/$_appsdir/$appname "$subpkgdir"/$_appsdir/
 }
 
-sha512sums="06808b9f790cfba685161db4c8e10e6973fc1fb52223f974b312eaa0407ab449957d6c8fc8578c0c27fd8d71a94e61cff6a1acdeba852b0568cfbb35bf7ddbd0  nextcloud-14.0.1.zip
+sha512sums="0dae491287ad068bdac6fc56b6f4cdbe86fff6a80e4b42752ed48958c4799ca1dce85ebac006f308eebcb4e5c65a0d98d769be9728b29a08b5af5d20aaac552c  nextcloud-14.0.2.zip
 63690b8d8ffe6d4896c5b666aa9d493b501aa3e171c6557e7a003599049f0d36f266a2a257a9535dea055bca1e84208b219c6cd5e4ecd70dd064e1dd1007203a  nextcloud14-dont-chmod.patch
 aef3c92497d738d6968e0f0b0d415b4953500db24ae14af41ef972665cf7eff00cb6c53dc953845fdbb389c3c965a75b8b14b9247513c05cf4130fe1cfc61731  dont-update-htaccess.patch
-ebeabf850761348346c1e10a60a6f67771a30efc308e4f776f1455f8b48ee357c51c4821e1db92453f1548345a5c6005ea0eb642fb6a4fd0ee910c68a65e3290  disable-integrity-check-as-default.patch
-7dd7113ab34aedea23b377e465b39f20123495c83eae4e4b0120bc843b124a25930c2ff27617c11615e6ad987257005a1eaf59c7f57b88f0878c8d00cbef5f55  app-encryption-info-add-mcrypt.patch
-7d60ba2f1c012b0a1cded30f757b7ec0efe7fc4bfa7b5c6879f35eb80711ac1d5e6c894356346222a0de68b0808c99bac358aaae1c69124a855da2a98cdff6ec  iconv-ascii-translit-not-supported.patch
+d2100a837fef1eeae5f706650ab4c985d9e00f61efa5526ef76c7c1f5811c3906eb6c3c13c151eff9677a0c303faab64411a5a84d6792728bc520d2c618d7d5b  disable-integrity-check-as-default.patch
+baa9d671643cc27cf0b3259ac25ad97811523aab223c35a30f23776ba4866156f7b04e39511b98e5fc0e7f12774ed44d510b9ce50fc8ccac51a17c70020aa0e6  app-encryption-info-add-mcrypt.patch
+de1b433c2fb2582b599cb25e718e454fc4b93543a5a60eee39a03bcccf35d281594611395bdebe02319bedd9a894507eef97010ebdfca381e0f1a09df283d375  iconv-ascii-translit-not-supported.patch
 478f5cd7c5d30380ea619d3e8ec623217a06a09b27534266f00297545c7d276b068c5d984673eebc5676e8bac7f45112549498944ce3fa678ac8a69541d7c430  use-external-docs-if-local-not-avail.patch
 5f73cd9399fa484ef15bd47e803c93381deffbc7699eceadbb5c27e43b20156806d74e5021a64d28f0165ef87b519e962780651711a37bceb9f0b04455dfdce1  nextcloud-config.php
-f224d72799ee5819979089eb58978225454223bee597c938681a4f6279eb49297fe9250ac54ccf8bcb33ae262bce43d085affb77723492ee662263710d4008c9  nextcloud.logrotate
+7388458a9e8b7afd3d3269718306410ffa59c3c23da4bef367a4d7f6d2570136fae9dd421b19c1441e7ffb15a5405e18bb5da67b1a15f9f45e8b98d3fda532ba  nextcloud.logrotate
 dcc57735d7d4af4a7ebbdd1186d301e51d2ae4675022aea6bf1111222dfa188a3a490ebd6e7c8a7ac30046cb7d93f81cec72a51acbc60d0c10b7fb64630c637a  nextcloud.confd
 edb699ea6127b231793254115b334006c2d50a0d2ecc846188c3521ddffc3c0e19c5e2944f03cae81e6c645c859258380691081b1c522a22d40939b31db36e8a  nextcloud.cron
 ee9073a6df4286cba2d1d855cf40863968f20677729b2c7848ab50a70d4915b8e84c957a850a03a707231256c11312e5792e7817dd50afbf73efe767fef2112d  fpm-pool.conf
