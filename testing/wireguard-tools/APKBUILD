@@ -1,8 +1,9 @@
 # Contributor: Stuart Cardall <developer@it-offshore.co.uk>
 # Maintainer: Stuart Cardall <developer@it-offshore.co.uk>
 
+# NOTE: pkgrel must match _toolsrel in wireguard-vanilla
 pkgname=wireguard-tools
-pkgver=0.0.20181006
+pkgver=0.0.20181119
 pkgrel=0
 pkgdesc="Next generation secure network tunnel: userspace tools"
 arch='all'
@@ -42,4 +43,4 @@ bashcomp() {
 	mv "$pkgdir"/usr/share "$subpkgdir"/usr
 }
 
-sha512sums="a8cfae43c3d1c4bcebd5f301eb7ce3d45f799383c8b696757e84e53d921027d415dc4459628a1dd441f0c5d31079582a54517e8de0b258452ea4a310362be9bf  WireGuard-0.0.20181006.tar.xz"
+sha512sums="dc9286e536bb3f4a6545261b98b5bb056a085f2e95b1b571350168af23cda5231a90b915b03dd29d195412fc61efc781b7d57b2a15a42a34b97e989a5105198e  WireGuard-0.0.20181119.tar.xz"
